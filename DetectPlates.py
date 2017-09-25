@@ -12,8 +12,8 @@ import PossiblePlate
 import PossibleChar
 
 # module level variables ##########################################################################
-PLATE_WIDTH_PADDING_FACTOR = 1.2
-PLATE_HEIGHT_PADDING_FACTOR = 1.5
+PLATE_WIDTH_PADDING_FACTOR = 1.1
+PLATE_HEIGHT_PADDING_FACTOR = 1.1
 
 ###################################################################################################
 def detectPlatesInScene(imgOriginalScene):

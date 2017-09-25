@@ -6,8 +6,8 @@ import math
 
 # module level variables ##########################################################################
 GAUSSIAN_SMOOTH_FILTER_SIZE = (5, 5)
-ADAPTIVE_THRESH_BLOCK_SIZE = 19
-ADAPTIVE_THRESH_WEIGHT = 9
+ADAPTIVE_THRESH_BLOCK_SIZE = 11
+ADAPTIVE_THRESH_WEIGHT = 3
 
 ###################################################################################################
 def preprocess(imgOriginal):
@@ -20,12 +20,11 @@ def preprocess(imgOriginal):
     imgBlurred = np.zeros((height, width, 1), np.uint8)
 
     imgBlurred = cv2.GaussianBlur(imgMaxContrastGrayscale, GAUSSIAN_SMOOTH_FILTER_SIZE, 0)
-
-    imgThresh = cv2.adaptiveThreshold(imgBlurred, 255.0, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, ADAPTIVE_THRESH_BLOCK_SIZE, ADAPTIVE_THRESH_WEIGHT)
+    gray = cv2.cvtColor(imgOriginal, cv2.COLOR_BGR2GRAY)
+    imgThresh = cv2.adaptiveThreshold(gray, 255.0, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, ADAPTIVE_THRESH_BLOCK_SIZE, ADAPTIVE_THRESH_WEIGHT)
 
     return imgGrayscale, imgThresh
-# end function
-
+# end function3
 ###################################################################################################
 def extractValue(imgOriginal):
     height, width, numChannels = imgOriginal.shape
@@ -57,13 +56,3 @@ def maximizeContrast(imgGrayscale):
 
     return imgGrayscalePlusTopHatMinusBlackHat
 # end function
-
-
-
-
-
-
-
-
-
-

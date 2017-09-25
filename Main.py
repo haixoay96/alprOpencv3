@@ -28,8 +28,9 @@ def main(file):
     # end if
 
     imgOriginalScene  = cv2.imread(file)
+    #imgOriginalScene = cv2.fastNlMeansDenoisingColored(imgOriginalScene, None, 20,20,7,21)
     height, width, numChannels = imgOriginalScene.shape
-    scale = 80.0/width
+    scale = 120.0/width
     imgOriginalScene = cv2.resize(imgOriginalScene, (0, 0), fx = scale, fy = scale)
     if imgOriginalScene is None:                            # if image was not read successfully
         print "\nerror: image not read from file \n\n"      # print error message to std out
@@ -135,7 +136,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
 
 ###################################################################################################
 if __name__ == "__main__":
-    main('./plate_test/0041_00507_b-0.jpg')
+    main('./plate_test/0446_05789_b-0.jpg')
     # for file in os.listdir("./plate_test"):
     #     print file
     #     main(os.path.join("./plate_test", file))
